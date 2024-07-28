@@ -5,10 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [],
   "client": [
+    "ClientCommonPacketListenerImplExt",
     "ClientPacketListenerMixin",
     "ConnectScreenMixin",
-    "DisconnectedScreenMixin",
     "DisconnectedRealmsScreenMixin",
+    "DisconnectedScreenMixin",
     "MinecraftMixin",
     "RealmsConnectMixin"
   ],

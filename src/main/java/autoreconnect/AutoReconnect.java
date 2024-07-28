@@ -1,6 +1,7 @@
 package autoreconnect;
 
 import autoreconnect.config.AutoReconnectConfig;
+import autoreconnect.mixin.ClientCommonPacketListenerImplExt;
 import autoreconnect.reconnect.ReconnectStrategy;
 import autoreconnect.reconnect.SingleplayerReconnectStrategy;
 import com.mojang.logging.LogUtils;
@@ -14,6 +15,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
+import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
@@ -71,6 +73,12 @@ public class AutoReconnect implements ClientModInitializer {
     }
 
     public void startCountdown(final IntConsumer callback) {
+        // don't reconnect when being transferred
+        var packetListener = Minecraft.getInstance().getConnection().getConnection().getPacketListener();
+        if (packetListener instanceof ClientCommonPacketListenerImpl) {
+            if (((ClientCommonPacketListenerImplExt) packetListener).autoreconnect$isTransferring()) return;
+        }
+
         // if (countdown.get() != null) return; // should not happen
         if (reconnectStrategy == null) {
             // TODO fix issue appropriately, logging error for now
