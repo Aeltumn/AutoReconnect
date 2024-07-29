@@ -74,9 +74,11 @@ public class AutoReconnect implements ClientModInitializer {
 
     public void startCountdown(final IntConsumer callback) {
         // don't reconnect when being transferred
-        var packetListener = Minecraft.getInstance().getConnection().getConnection().getPacketListener();
-        if (packetListener instanceof ClientCommonPacketListenerImpl) {
-            if (((ClientCommonPacketListenerImplExt) packetListener).autoreconnect$isTransferring()) return;
+        if (Minecraft.getInstance().getConnection() != null) {
+            var packetListener = Minecraft.getInstance().getConnection().getConnection().getPacketListener();
+            if (packetListener instanceof ClientCommonPacketListenerImpl) {
+                if (((ClientCommonPacketListenerImplExt) packetListener).autoreconnect$isTransferring()) return;
+            }
         }
 
         // if (countdown.get() != null) return; // should not happen
