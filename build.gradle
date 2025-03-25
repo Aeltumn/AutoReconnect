@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.8-SNAPSHOT'
+    id 'fabric-loom' version '1.10-SNAPSHOT'
 }
 
 version = project.mod_version
@@ -37,7 +37,7 @@ processResources {
     inputs.property "name", project.mod_name
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
-    inputs.property "java_version", 17
+    inputs.property "java_version", 21
     inputs.property "fabric_loader_version", project.loader_version
     inputs.property "modmenu_version", project.modmenu_version
     inputs.property "clothconfig_version", project.clothconfig_version
@@ -48,7 +48,7 @@ processResources {
             "name": project.mod_name,
             "version": project.version,
             "minecraft_version": project.minecraft_version,
-            "java_version": 17,
+            "java_version": 21,
             "fabric_loader_version": project.loader_version,
             "modmenu_version": project.modmenu_version,
             "clothconfig_version": project.clothconfig_version
@@ -62,8 +62,8 @@ java {
     // If you remove this line, sources will not be generated.
     withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
