@@ -48,7 +48,6 @@ java {
 
 tasks.jar {
 	inputs.property("projectName", project.name)
-	archiveBaseName = "better-spectate-player-highlighting"
 
 	from("LICENSE") {
 		rename { "${it}_${project.name}" }
