@@ -18,8 +18,6 @@ import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.contents.TranslatableContents;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.Minecart;
 
 import java.util.Iterator;
 import java.util.Optional;

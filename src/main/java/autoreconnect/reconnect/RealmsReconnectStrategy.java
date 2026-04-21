@@ -1,5 +1,6 @@
 package autoreconnect.reconnect;
 
+import com.mojang.realmsclient.client.RealmsClient;
 import com.mojang.realmsclient.dto.RealmsServer;
 import com.mojang.realmsclient.gui.screens.RealmsLongRunningMcoTaskScreen;
 import com.mojang.realmsclient.util.task.GetServerDetailsTask;
@@ -19,7 +20,7 @@ public class RealmsReconnectStrategy extends ReconnectStrategy {
     }
 
     /**
-     * @see net.minecraft.client.QuickPlay#joinRealmsWorld(net.minecraft.client.Minecraft, com.mojang.realmsclient.client.RealmsClient, String)
+     * @see net.minecraft.client.quickplay.QuickPlay#joinRealmsWorld(Minecraft, RealmsClient, String)
      */
     @Override
     public void reconnect() {

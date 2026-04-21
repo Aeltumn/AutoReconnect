@@ -23,11 +23,11 @@ public class ModMenuIntegration implements ModMenuApi {
     private static Screen createConfigScreen(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
             .setParentScreen(parent)
-            .setTitle(Component.translatable("Component.autoreconnect.config.title"));
+            .setTitle(Component.translatable("text.autoreconnect.config.title"));
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
         builder.getOrCreateCategory(Component.empty()) // Component will be ignored since it's the only category
             .addEntry(entryBuilder.startIntList(
-                    Component.translatable("Component.autoreconnect.config.option.delays"),
+                    Component.translatable("text.autoreconnect.config.option.delays"),
                     AutoReconnectConfig.getInstance().delays)
                 .setCreateNewInstance(list -> new IntegerListListEntry.IntegerListCell(AutoReconnectConfig.defaultDelay, list))
                 .setInsertInFront(false)
@@ -35,20 +35,20 @@ public class ModMenuIntegration implements ModMenuApi {
                 .setExpanded(true)
                 .setDefaultValue(AutoReconnectConfig.defaultDelays)
                 .setSaveConsumer(delays -> AutoReconnectConfig.getInstance().delays = delays)
-                .setTooltip(Component.translatable("Component.autoreconnect.config.tooltip.option.delays"))
+                .setTooltip(Component.translatable("text.autoreconnect.config.tooltip.option.delays"))
                 .build())
             .addEntry(entryBuilder.startBooleanToggle(
-                    Component.translatable("Component.autoreconnect.config.option.infinite"),
+                    Component.translatable("text.autoreconnect.config.option.infinite"),
                     AutoReconnectConfig.getInstance().infinite)
                 .setDefaultValue(AutoReconnectConfig.defaultInfinite)
-                .setTooltip(Component.translatable("Component.autoreconnect.config.tooltip.option.infinite"))
+                .setTooltip(Component.translatable("text.autoreconnect.config.tooltip.option.infinite"))
                 .setSaveConsumer(infinite -> AutoReconnectConfig.getInstance().infinite = infinite)
                 .build())
             .addEntry(new NestedListListEntry<AutoMessages, MultiElementListEntry<AutoMessages>>(
-                Component.translatable("Component.autoreconnect.config.option.automessages"),
+                Component.translatable("text.autoreconnect.config.option.automessages"),
                 AutoReconnectConfig.getInstance().autoMessages,
                 true,
-                () -> Optional.of(new Component[]{Component.translatable("Component.autoreconnect.config.tooltip.option.automessages")}),
+                () -> Optional.of(new Component[]{Component.translatable("text.autoreconnect.config.tooltip.option.automessages")}),
                 list -> AutoReconnectConfig.getInstance().autoMessages = list,
                 () -> AutoReconnectConfig.defaultAutoMessages,
                 entryBuilder.getResetButtonKey(),
@@ -62,49 +62,49 @@ public class ModMenuIntegration implements ModMenuApi {
 
     private static MultiElementListEntry<AutoMessages> createAutoMessagesEntry(ConfigEntryBuilder entryBuilder, AutoMessages autoMessages) {
         var tmp = new MultiElementListEntry<>(
-            Component.translatable("Component.autoreconnect.config.option.automessages.instance"),
+            Component.translatable("text.autoreconnect.config.option.automessages.instance"),
             autoMessages,
             Arrays.asList(
                 entryBuilder.startTextField(
-                        Component.translatable("Component.autoreconnect.config.option.automessages.name"),
+                        Component.translatable("text.autoreconnect.config.option.automessages.name"),
                         autoMessages.name)
                     .setErrorSupplier(ModMenuIntegration::emptyStringErrorSupplier)
                     .setDefaultValue(AutoMessages.defaultName)
-                    .setTooltip(Component.translatable("Component.autoreconnect.config.tooltip.option.automessages.name"))
+                    .setTooltip(Component.translatable("text.autoreconnect.config.tooltip.option.automessages.name"))
                     .setSaveConsumer(name -> autoMessages.name = name)
                     .build(),
                 entryBuilder.startStrList(
-                        Component.translatable("Component.autoreconnect.config.option.automessages.messages"),
+                        Component.translatable("text.autoreconnect.config.option.automessages.messages"),
                         autoMessages.messages)
                     .setErrorSupplier(ModMenuIntegration::emptyListErrorSupplier)
                     .setCellErrorSupplier(ModMenuIntegration::emptyStringErrorSupplier)
                     .setDefaultValue(AutoMessages.defaultMessages)
                     .setInsertInFront(false)
                     .setExpanded(true)
-                    .setTooltip(Component.translatable("Component.autoreconnect.config.tooltip.option.automessages.messages"))
+                    .setTooltip(Component.translatable("text.autoreconnect.config.tooltip.option.automessages.messages"))
                     .setSaveConsumer(messages -> autoMessages.messages = messages)
                     .build(),
                 entryBuilder.startIntField(
-                        Component.translatable("Component.autoreconnect.config.option.automessages.delay"),
+                        Component.translatable("text.autoreconnect.config.option.automessages.delay"),
                         autoMessages.delay)
                     .setDefaultValue(AutoMessages.defaultDelay)
-                    .setTooltip(Component.translatable("Component.autoreconnect.config.tooltip.option.automessages.delay"))
+                    .setTooltip(Component.translatable("text.autoreconnect.config.tooltip.option.automessages.delay"))
                     .setMin(1)
                     .setSaveConsumer(delay -> autoMessages.delay = delay)
                     .build()
             ),
             true);
         tmp.setTooltipSupplier(() -> Optional.of(new Component[] {
-            Component.translatable("Component.autoreconnect.config.tooltip.option.automessages.instance")
+            Component.translatable("text.autoreconnect.config.tooltip.option.automessages.instance")
         }));
         return tmp;
     }
 
     private static Optional<Component> emptyListErrorSupplier(List<?> list) {
-        return list == null || list.isEmpty() ? Optional.of(Component.translatable("Component.autoreconnect.config.error.empty_list")) : Optional.empty();
+        return list == null || list.isEmpty() ? Optional.of(Component.translatable("text.autoreconnect.config.error.empty_list")) : Optional.empty();
     }
 
     private static Optional<Component> emptyStringErrorSupplier(String str) {
-        return str == null || str.isEmpty() ? Optional.of(Component.translatable("Component.autoreconnect.config.error.empty_string")) : Optional.empty();
+        return str == null || str.isEmpty() ? Optional.of(Component.translatable("text.autoreconnect.config.error.empty_string")) : Optional.empty();
     }
 }

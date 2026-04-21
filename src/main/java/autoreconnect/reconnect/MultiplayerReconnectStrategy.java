@@ -23,7 +23,7 @@ public class MultiplayerReconnectStrategy extends ReconnectStrategy {
     }
 
     /**
-     * @see net.minecraft.client.gui.screens.ConnectScreen#connect(Minecraft, ServerAddress, ServerData)
+     * @see net.minecraft.client.quickplay.QuickPlay#joinMultiplayerWorld(Minecraft, String)
      */
     @Override
     public void reconnect() {

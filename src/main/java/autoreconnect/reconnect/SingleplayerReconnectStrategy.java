@@ -16,7 +16,7 @@ public class SingleplayerReconnectStrategy extends ReconnectStrategy {
     }
 
     /**
-     * @see net.minecraft.client.QuickPlay#joinSingleplayerWorld(net.minecraft.client.Minecraft, String)
+     * @see net.minecraft.client.quickplay.QuickPlay#joinSingleplayerWorld(Minecraft, String)
      */
     @Override
     public void reconnect() {

@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screens.DisconnectedScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -97,12 +98,12 @@ public class DisconnectedScreenMixin extends Screen {
 
     // cancel auto reconnect when pressing escape, higher priority than exiting the screen
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (keyCode == 256 && shouldAutoReconnect) {
+    public boolean keyPressed(KeyEvent event) {
+        if (event.key() == 256 && shouldAutoReconnect) {
             cancelCountdown();
             return true;
         } else {
-            return super.keyPressed(keyCode, scanCode, modifiers);
+            return super.keyPressed(event);
         }
     }
 
