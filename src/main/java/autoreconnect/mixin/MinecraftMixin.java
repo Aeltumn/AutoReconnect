@@ -21,18 +21,8 @@ import static org.objectweb.asm.Opcodes.PUTFIELD;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
-    @Shadow
-    @Nullable
-    public Screen screen;
-
     @Inject(method = "doWorldLoad", at = @At("HEAD"))
     private void doWorldLoad(LevelStorageSource.LevelStorageAccess levelSourceAccess, PackRepository packRepository, WorldStem worldStem, Optional<GameRules> gameRules, boolean newWorld, CallbackInfo ci) {
         AutoReconnect.getInstance().setReconnectHandler(new SingleplayerReconnectStrategy(worldStem.worldDataAndGenSettings().data().getLevelName()));
-    }
-
-    @Inject(method = "setScreen", at = @At(value = "FIELD", opcode = PUTFIELD,
-            target = "Lnet/minecraft/client/Minecraft;screen:Lnet/minecraft/client/gui/screens/Screen;"))
-    private void setScreen(Screen newScreen, CallbackInfo info) {
-        AutoReconnect.getInstance().onScreenChanged(screen, newScreen);
     }
 }

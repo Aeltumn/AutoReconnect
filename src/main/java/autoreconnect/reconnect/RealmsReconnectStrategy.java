@@ -26,6 +26,6 @@ public class RealmsReconnectStrategy extends ReconnectStrategy {
     public void reconnect() {
         var titlescreen = new TitleScreen();
         var getserverdetailstask = new GetServerDetailsTask(titlescreen, realmsServer);
-        Minecraft.getInstance().setScreen(new RealmsLongRunningMcoTaskScreen(titlescreen, getserverdetailstask));
+        Minecraft.getInstance().gui.setScreen(new RealmsLongRunningMcoTaskScreen(titlescreen, getserverdetailstask));
     }
 }

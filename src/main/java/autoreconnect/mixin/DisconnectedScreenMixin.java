@@ -93,7 +93,7 @@ public class DisconnectedScreenMixin extends Screen {
     // actually return to parent screen and not to the title screen
     @Override
     public void onClose() {
-        Minecraft.getInstance().setScreen(parent);
+        Minecraft.getInstance().gui.setScreen(parent);
     }
 
     // cancel auto reconnect when pressing escape, higher priority than exiting the screen
